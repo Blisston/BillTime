@@ -1,0 +1,9 @@
+.container {
+    background-color: white;
+    height: 100vh;
+    margin-top: 2%;
+    padding: 5%;
+}
+.btn {
+    width: 75%;
+}

@@ -1,0 +1,135 @@
+<div class="container">
+  <form>
+    <div class="row">
+      <div class="col-6">
+        <div class="row">
+          <div class="col-4">
+            <p>Bill Number&nbsp;:</p>
+          </div>
+          <div class="col-6">
+            <input class="form-control" name="billNo" type="number" />
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="row">
+          <div class="col-4">
+            <p>Bill Date&nbsp;:</p>
+          </div>
+          <div class="col-6">
+            <input class="form-control" name="billDate" type="date" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="col-6">
+        <div class="row">
+          <div class="col-4">
+            <p>Customer Name&nbsp;:</p>
+          </div>
+          <div class="col-6">
+            <input class="form-control" name="customerName" type="text" />
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="row">
+          <div class="col-4">
+            <p>Mobile Number&nbsp;:</p>
+          </div>
+          <div class="col-6">
+            <input class="form-control" name="mobile" type="number" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <div class="row">
+      <div class="col-4">
+        <input class="form-control" name="itemName" type="text" />
+      </div>
+      <div class="col-8">
+        <div class="row">
+          <div class="col-3">
+            <input class="form-control" name="quantity" type="number" />
+          </div>
+          <div class="col-3">
+            <input class="form-control" name="unitPrice" type="number" />
+          </div>
+          <div class="col-3">
+            <input class="form-control" name="discount" type="number" />
+          </div>
+          <div class="col-3">
+            <input class="form-control" name="total" type="number" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <br />
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col" colspan="3">Item Name</th>
+          <th scope="col">Qty</th>
+          <th scope="col">Unit</th>
+          <th scope="col">Discount</th>
+          <th scope="col">Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td colspan="3">Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td colspan="3">Jacob</td>
+          <td>Thornton</td>
+          <td>@fat</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr />
+    <div class="row">
+      <div class="col-6">
+        <div class="row">
+          <div class="col-6">
+            <p>Discount %&nbsp;:</p>
+            <input class="form-control" name="dicountPer" type="number" />
+          </div>
+          <div class="col-6">
+            <p>Discount Amount&nbsp;:</p>
+            <input class="form-control" name="dicount" type="number" />
+          </div>
+        </div>
+      </div>
+      <div class="col-6 p-3 text-center">
+        <h3>Grand Total&nbsp;:&nbsp;50000</h3>
+      </div>
+    </div>
+    <hr />
+    <div class="row">
+      <div class="col-3">
+        <button class="btn btn-success">Save</button>
+      </div>
+      <div class="col-3">
+        <button class="btn btn-success">Print</button>
+      </div>
+      <div class="col-3">
+        <button class="btn btn-info">Clear</button>
+      </div>
+      <div class="col-3">
+        <button class="btn btn-danger">Cancel</button>
+      </div>
+    </div>
+  </form>
+</div>
