@@ -1,135 +1,150 @@
-<div class="container">
-  <form>
-    <div class="row">
-      <div class="col-6">
-        <div class="row">
-          <div class="col-4">
-            <p>Bill Number&nbsp;:</p>
-          </div>
-          <div class="col-6">
-            <input class="form-control" name="billNo" type="number" />
-          </div>
+<div *ngIf="bill" class="container">
+  <div class="row">
+    <div class="col-6">
+      <div class="row">
+        <div class="col-4">
+          <p>Bill Number&nbsp;:</p>
         </div>
-      </div>
-      <div class="col-6">
-        <div class="row">
-          <div class="col-4">
-            <p>Bill Date&nbsp;:</p>
-          </div>
-          <div class="col-6">
-            <input class="form-control" name="billDate" type="date" />
-          </div>
+        <div class="col-6">
+          <input
+            class="form-control"
+            [(ngModel)]="bill.id"
+            name="billNo"
+            type="number"
+            disabled="true"
+          />
         </div>
       </div>
     </div>
-    <br />
-    <div class="row">
-      <div class="col-6">
-        <div class="row">
-          <div class="col-4">
-            <p>Customer Name&nbsp;:</p>
-          </div>
-          <div class="col-6">
-            <input class="form-control" name="customerName" type="text" />
-          </div>
+    <div class="col-6">
+      <div class="row">
+        <div class="col-4">
+          <p>Bill Date&nbsp;:</p>
         </div>
-      </div>
-      <div class="col-6">
-        <div class="row">
-          <div class="col-4">
-            <p>Mobile Number&nbsp;:</p>
-          </div>
-          <div class="col-6">
-            <input class="form-control" name="mobile" type="number" />
-          </div>
+        <div class="col-6">
+          <input
+            class="form-control"
+            [(ngModel)]="bill.date"
+            name="billDate"
+            type="date"
+          />
         </div>
       </div>
     </div>
-    <hr />
-    <div class="row">
-      <div class="col-4">
-        <input class="form-control" name="itemName" type="text" />
-      </div>
-      <div class="col-8">
-        <div class="row">
-          <div class="col-3">
-            <input class="form-control" name="quantity" type="number" />
-          </div>
-          <div class="col-3">
-            <input class="form-control" name="unitPrice" type="number" />
-          </div>
-          <div class="col-3">
-            <input class="form-control" name="discount" type="number" />
-          </div>
-          <div class="col-3">
-            <input class="form-control" name="total" type="number" />
-          </div>
+  </div>
+  <br />
+  <div class="row">
+    <div class="col-6">
+      <div class="row">
+        <div class="col-4">
+          <p>Customer Name&nbsp;:</p>
+        </div>
+        <div class="col-6">
+          <input
+            class="form-control"
+            [(ngModel)]="bill.customer_data.name"
+            name="customerName"
+            type="text"
+          />
         </div>
       </div>
     </div>
-    <br />
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col" colspan="3">Item Name</th>
-          <th scope="col">Qty</th>
-          <th scope="col">Unit</th>
-          <th scope="col">Discount</th>
-          <th scope="col">Total</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td colspan="3">Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td colspan="3">Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-      </tbody>
-    </table>
-    <hr />
-    <div class="row">
-      <div class="col-6">
-        <div class="row">
-          <div class="col-6">
-            <p>Discount %&nbsp;:</p>
-            <input class="form-control" name="dicountPer" type="number" />
-          </div>
-          <div class="col-6">
-            <p>Discount Amount&nbsp;:</p>
-            <input class="form-control" name="dicount" type="number" />
-          </div>
+    <div class="col-6">
+      <div class="row">
+        <div class="col-4">
+          <p>Mobile Number&nbsp;:</p>
+        </div>
+        <div class="col-6">
+          <input
+            class="form-control"
+            [(ngModel)]="bill.customer_data.number"
+            name="mobile"
+            type="text"
+          />
         </div>
       </div>
-      <div class="col-6 p-3 text-center">
-        <h3>Grand Total&nbsp;:&nbsp;50000</h3>
-      </div>
     </div>
-    <hr />
+  </div>
+  <hr />
+  <form #inputForm="ngForm" (ngSubmit)="addItem(inputForm)">
     <div class="row">
-      <div class="col-3">
-        <button class="btn btn-success">Save</button>
+      <div class="col-5">
+        <p>Item</p>
+        <select class="form-control" (change)="getPrice(inputForm)" ngModel name="itemName" type="text">
+          <option *ngFor="let item of items" value="{{ item.name }}">{{
+            item.name
+          }}</option
+          >>
+        </select>
       </div>
-      <div class="col-3">
-        <button class="btn btn-success">Print</button>
-      </div>
-      <div class="col-3">
-        <button class="btn btn-info">Clear</button>
-      </div>
-      <div class="col-3">
-        <button class="btn btn-danger">Cancel</button>
+      <div class="col-7">
+        <div class="row">
+          <div class="col-3">
+            <p>Quantity</p>
+            <input class="form-control" (ngModelChange)="calculateSub(inputForm)" ngModel name="quantity" type="number" />
+          </div>
+          <div class="col-3">
+            <p>Price</p>
+            <input class="form-control" [(ngModel)]="unitPrice" name="unitPrice" type="text" disabled />
+          </div>
+
+          <div class="col-3">
+            <p>Total</p>
+            <input class="form-control" [(ngModel)]="totalPrice" name="total" type="text" disabled/>
+          </div>
+          <div class="col-3">
+            <p>Action</p>
+            <button type="submit" class="btn btn-success">Add</button>
+          </div>
+        </div>
       </div>
     </div>
   </form>
+  <br />
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col" colspan="4">Item Name</th>
+        <th scope="col">Qty</th>
+        <th scope="col">Unit Cost</th>
+        <th scope="col">Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of bill.purchase.items; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td colspan="4">{{ item.name }}</td>
+        <td>{{ item.units }}</td>
+        <td>{{ item.unit_cost }}</td>
+        <td>{{ getTotal(item.units,item.unit_cost) }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <hr />
+  <div class="row">
+    <div class="col-6">
+      <div class="row">
+        
+      </div>
+    </div>
+    <div class="col-6 p-3 text-center">
+      <h3>Grand Total&nbsp;:&nbsp;{{grandTotal}}</h3>
+    </div>
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col-3">
+      <button class="btn btn-success" (click)="save()">Save</button>
+    </div>
+    <div class="col-3">
+      <button class="btn btn-success">Print</button>
+    </div>
+    <div class="col-3">
+      <button class="btn btn-info">Clear</button>
+    </div>
+    <div class="col-3">
+      <button class="btn btn-danger">Cancel</button>
+    </div>
+  </div>
 </div>
