@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-bill',
@@ -6,26 +7,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
   styleUrls: ['./bill.component.css']
 })
 export class BillComponent implements OnInit {
-  bills = `{
-    "bills":[{
-      "id":1,
-      "date":"12/09/2020",
-      "customer_data":{
-        "name":"Blisston Kirubha S",
-        "number":"8667084511"
-      },
-      "purchase":{
-        "items":[
-          {
-            "name":"Cashew Nut",
-            "unit_cost":"100",
-            "units":"8"
-          }],
-          "discount":"20",
-          "total":"10000"
-      }
-    }]
-  }`;
+  bills;
   itemObj = `{
     "items":[
       {
@@ -56,7 +38,13 @@ export class BillComponent implements OnInit {
   totalPrice = 0;
   grandTotal = 0;
   @ViewChild('inputForm') myForm;
-  constructor() {}
+  constructor(private router: Router) {
+    if (localStorage.getItem('billTime') == null) {
+      this.bills = `{"bills":[]}`;
+    } else {
+      this.bills = localStorage.getItem('billTime');
+    }
+  }
 
   ngOnInit(): void {
     this.items = JSON.parse(this.itemObj).items;
@@ -65,12 +53,16 @@ export class BillComponent implements OnInit {
 
   getId(): number {
     const bills = JSON.parse(this.bills).bills;
-    return bills[bills.length - 1].id + 1;
+    console.log(bills);
+    return bills.length > 0 ? +bills[bills.length - 1].id + 1 : 1;
   }
   save(): void {
-    const bills = JSON.parse(this.bills).bills;
-    bills.push(this.bill);
+    const bills = JSON.parse(this.bills);
     console.log(bills);
+    bills.bills.push(this.bill);
+    console.log(this.bills);
+    localStorage.setItem('billTime', JSON.stringify(bills));
+    this.clear();
   }
   getPrice(form) {
     console.log(
@@ -106,5 +98,27 @@ export class BillComponent implements OnInit {
     this.bill.purchase.items.forEach(x => {
       this.grandTotal += this.getTotal(+x.units, +x.unit_cost);
     });
+  }
+  clear() {
+    this.bill = {
+      id: 0,
+      date: new Date(),
+      customer_data: {
+        name: '',
+        number: ''
+      },
+      purchase: {
+        items: [],
+        discount: '',
+        total: ''
+      }
+    };
+    this.bills = localStorage.getItem('billTime');
+    this.bill.id = this.getId();
+  }
+  print() {
+    const pId = this.bill.id;
+    this.save();
+    this.router.navigate(['/print'], { queryParams: { id: pId } });
   }
 }
