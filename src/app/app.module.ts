@@ -7,11 +7,13 @@ import { BillComponent } from './bill/bill.component';
 import { PrintComponent } from './print/print.component';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { ItemsComponent } from './items/items.component';
 @NgModule({
   declarations: [
     AppComponent,
     BillComponent,
-    PrintComponent
+    PrintComponent,
+    ItemsComponent
   ],
   imports: [
     BrowserModule,

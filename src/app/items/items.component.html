@@ -1,0 +1,46 @@
+<div class="container">
+  <h2>Items</h2>
+  <h3>Add Item</h3>
+  <br />
+  <form>
+    <div class="row">
+      <div class="col-8">
+        <input
+          class="form-control "
+          name="item"
+          [(ngModel)]="item"
+          type="text"
+        />
+      </div>
+      <div class="col4">
+        <input
+          class="form-control "
+          name="pricve"
+          [(ngModel)]="price"
+          type="number"
+        />
+      </div>
+    </div>
+    <button
+      type="submit"
+      (click)="addItem()"
+      class="btn btn-primary w-100 mt-2"
+    >
+      Add
+    </button>
+  </form>
+  <h3>Available</h3>
+  <ul id="incomplete-tasks">
+    <li *ngFor="let item of items; let i =index" class="items px-5">
+      <div class="row w-50">
+        <div class="col-8">
+         <span> {{i+1}}. &nbsp;{{ item.name }}</span>
+        </div>
+        <div class="col-4">
+          <span class="ml-5">Rs:&nbsp;{{ item.price }}</span>
+        </div>
+      </div>
+      <a class="delete float-right">Delete</a>
+    </li>
+  </ul>
+</div>

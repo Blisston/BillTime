@@ -8,18 +8,6 @@ import { Router } from '@angular/router';
 })
 export class BillComponent implements OnInit {
   bills;
-  itemObj = `{
-    "items":[
-      {
-        "name":"almond",
-        "price":"80"
-      },
-      {
-        "name":"Pista",
-        "price":"90"
-      }
-    ]
-  }`;
   items;
   bill = {
     id: 0,
@@ -43,11 +31,11 @@ export class BillComponent implements OnInit {
       this.bills = `{"bills":[]}`;
     } else {
       this.bills = localStorage.getItem('billTime');
+      this.items = JSON.parse(localStorage.getItem('items')).items;
     }
   }
 
   ngOnInit(): void {
-    this.items = JSON.parse(this.itemObj).items;
     this.bill.id = this.getId();
   }
 
