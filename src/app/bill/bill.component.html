@@ -22,12 +22,7 @@
           <p>Bill Date&nbsp;:</p>
         </div>
         <div class="col-6">
-          <input
-            class="form-control"
-            [(ngModel)]="bill.date"
-            name="billDate"
-            type="date"
-          />
+         <span>{{bill.dateField |date}}</span>
         </div>
       </div>
     </div>
@@ -116,8 +111,8 @@
         <td>{{ i + 1 }}</td>
         <td colspan="4">{{ item.name }}</td>
         <td>{{ item.units }}</td>
-        <td>{{ item.unit_cost }}</td>
-        <td>{{ getTotal(item.units,item.unit_cost) }}</td>
+        <td>Rs&nbsp;{{ item.unit_cost }}</td>
+        <td>Rs&nbsp;{{ getTotal(item.units,item.unit_cost) }}</td>
       </tr>
     </tbody>
   </table>
@@ -129,7 +124,7 @@
       </div>
     </div>
     <div class="col-6 p-3 text-center">
-      <h3>Grand Total&nbsp;:&nbsp;{{grandTotal}}</h3>
+      <h3>Grand Total&nbsp;:&nbsp;Rs&nbsp;{{grandTotal}}</h3>
     </div>
   </div>
   <hr />

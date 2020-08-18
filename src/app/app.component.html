@@ -1,7 +1,7 @@
 <!-- <app-bill></app-bill> -->
 <!-- <app-print></app-print> -->
 
-<ul>
+<ul *ngIf="path">
   <li>
     <a [routerLink]="['/form']"  class="spotify"
       ><span>Create Bill</span><i class="entypo-spotify"></i
@@ -13,7 +13,7 @@
     ></a>
   </li>
   <li>
-    <a [routerLink]="['/form']" class="skype"
+    <a [routerLink]="['/history']" class="skype"
       ><span>View Bills</span><i class="entypo-skype"></i
     ></a>
   </li>

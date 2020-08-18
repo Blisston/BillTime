@@ -8,12 +8,14 @@ import { PrintComponent } from './print/print.component';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ItemsComponent } from './items/items.component';
+import { HistoryComponent } from './history/history.component';
 @NgModule({
   declarations: [
     AppComponent,
     BillComponent,
     PrintComponent,
-    ItemsComponent
+    ItemsComponent,
+    HistoryComponent
   ],
   imports: [
     BrowserModule,

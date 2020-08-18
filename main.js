@@ -4,12 +4,9 @@ let win;
 
 function createWindow () {
   // Create the browser window.
-  win = new BrowserWindow({
-    width: 600, 
-    height: 600,
-    backgroundColor: '#ffffff',
-   
-  })
+  win = new BrowserWindow({show: false});
+  win.maximize();
+  win.show();
 
 
   win.loadURL(`file://${__dirname}/dist/billtime/index.html`)

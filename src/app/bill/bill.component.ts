@@ -11,7 +11,7 @@ export class BillComponent implements OnInit {
   items;
   bill = {
     id: 0,
-    date: new Date(),
+    dateField: new Date(),
     customer_data: {
       name: '',
       number: ''
@@ -27,11 +27,16 @@ export class BillComponent implements OnInit {
   grandTotal = 0;
   @ViewChild('inputForm') myForm;
   constructor(private router: Router) {
+    if (localStorage.getItem('items') === null) {
+      localStorage.setItem('items', JSON.stringify({ items: [] }));
+    } else {
+      this.items = JSON.parse(localStorage.getItem('items')).items;
+    }
+
     if (localStorage.getItem('billTime') == null) {
       this.bills = `{"bills":[]}`;
     } else {
       this.bills = localStorage.getItem('billTime');
-      this.items = JSON.parse(localStorage.getItem('items')).items;
     }
   }
 
@@ -47,8 +52,10 @@ export class BillComponent implements OnInit {
   save(): void {
     const bills = JSON.parse(this.bills);
     console.log(bills);
+    this.bill.purchase.total = '' + this.grandTotal;
     bills.bills.push(this.bill);
     console.log(this.bills);
+
     localStorage.setItem('billTime', JSON.stringify(bills));
     this.clear();
   }
@@ -90,7 +97,7 @@ export class BillComponent implements OnInit {
   clear() {
     this.bill = {
       id: 0,
-      date: new Date(),
+      dateField: new Date(),
       customer_data: {
         name: '',
         number: ''

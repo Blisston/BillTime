@@ -1,0 +1,22 @@
+<div class="container">
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">Bill id</th>
+        <th scope="col">Customer</th>
+        <th scope="col">Date</th>
+        <th scope="col">Amount</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody *ngIf="bills.length>0">
+      <tr *ngFor="let bill of bills; let i = index">
+        <td>{{ bill.id}}</td>
+        <td>{{bill.customer_data.name}}<br>{{bill.customer_data.number}}</td>
+        <td>{{bill.dateField | date}}</td>
+        <td>{{bill.purchase.total}}</td>
+        <td><button [routerLink]="['/print']" [queryParams]="{ id: bill.id }"  class="btn btn-secondary">Print</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
