@@ -9,13 +9,15 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ItemsComponent } from './items/items.component';
 import { HistoryComponent } from './history/history.component';
+import { StockComponent } from './stock/stock.component';
 @NgModule({
   declarations: [
     AppComponent,
     BillComponent,
     PrintComponent,
     ItemsComponent,
-    HistoryComponent
+    HistoryComponent,
+    StockComponent
   ],
   imports: [
     BrowserModule,

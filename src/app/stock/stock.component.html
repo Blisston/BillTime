@@ -1,0 +1,28 @@
+<div class="container">
+    <button class="btn btn-warning float-right mb-2" *ngIf="!edit" (click)="editN()">Edit</button>
+    <button class="btn btn-success float-right mb-2"  *ngIf="edit" (click)="save()">Save</button>
+    <br>
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">No</th>
+        <th scope="col">Item</th>
+        <th scope="col">Stock Availability</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="stocks.length > 0">
+      <tr *ngFor="let stock of stocks; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ stock.name }}</td>
+        <td>
+          <span *ngIf="!edit">
+            {{ stock.stock }}
+          </span>
+
+          <span *ngIf="edit"><input [(ngModel)]="stocks[i].stock" /> </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+</div>

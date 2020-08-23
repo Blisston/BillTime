@@ -51,11 +51,9 @@ export class BillComponent implements OnInit {
   }
   save(): void {
     const bills = JSON.parse(this.bills);
-    console.log(bills);
     this.bill.purchase.total = '' + this.grandTotal;
     bills.bills.push(this.bill);
-    console.log(this.bills);
-
+    this.calculateStock();
     localStorage.setItem('billTime', JSON.stringify(bills));
     this.clear();
   }
@@ -75,6 +73,16 @@ export class BillComponent implements OnInit {
   }
   getTotal(x, y) {
     return x * y;
+  }
+  calculateStock() {
+    let stocks = JSON.parse(localStorage.getItem('stock')).stocks;
+    const items = this.bill.purchase.items;
+    for (let i = 0; i < items.length; i++) {
+      let index = stocks.map(x => x.name).indexOf(items[i].name);
+      stocks[index].stock = +stocks[index].stock - items[i].units;
+    }
+    console.log(stocks);
+    localStorage.setItem('stock', JSON.stringify({ stocks: stocks }));
   }
   addItem(item) {
     this.bill.purchase.items.push({
