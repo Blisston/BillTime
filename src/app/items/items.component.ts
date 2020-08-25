@@ -24,4 +24,8 @@ export class ItemsComponent implements OnInit {
     localStorage.setItem('items', JSON.stringify({ items: this.items }));
     this.item = '';
   }
+  remove(i) {
+    this.items.splice(i,1);
+    localStorage.setItem('items', JSON.stringify({ items: this.items }));
+  }
 }

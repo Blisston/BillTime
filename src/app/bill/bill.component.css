@@ -7,3 +7,11 @@
 .btn {
     width: 75%;
 }
+.remove {
+    padding: 0px 5px;
+    background-color: red;
+    padding-bottom: 3px;
+    color: white;
+    float: right;
+    cursor: pointer;
+}

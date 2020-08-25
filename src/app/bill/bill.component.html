@@ -112,7 +112,7 @@
         <td colspan="4">{{ item.name }}</td>
         <td>{{ item.units }}</td>
         <td>Rs&nbsp;{{ item.unit_cost }}</td>
-        <td>Rs&nbsp;{{ getTotal(item.units,item.unit_cost) }}</td>
+        <td>Rs&nbsp;{{ getTotal(item.units,item.unit_cost) }}  <span (click)="remove(i)" class="remove">x</span></td>
       </tr>
     </tbody>
   </table>

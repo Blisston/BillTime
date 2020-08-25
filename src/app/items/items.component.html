@@ -40,7 +40,7 @@
           <span class="ml-5">Rs:&nbsp;{{ item.price }}</span>
         </div>
       </div>
-      <a class="delete float-right">Delete</a>
+      <a (click)="remove(i)" class="delete float-right">Delete</a>
     </li>
   </ul>
 </div>

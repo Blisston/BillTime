@@ -124,4 +124,7 @@ export class BillComponent implements OnInit {
     this.save();
     this.router.navigate(['/print'], { queryParams: { id: pId } });
   }
+  remove(i) {
+    this.bill.purchase.items.splice(i,1);
+  }
 }
