@@ -18,6 +18,8 @@ export class HistoryComponent implements OnInit {
   ngOnInit(): void {
     this.bills = JSON.parse(localStorage.getItem('billTime')).bills;
     console.log(this.bills);
+  }
+  export() {
     const flat = this.flatten(this.bills);
     console.log(flat);
     this.exportAsExcelFile(flat, 'Bills');

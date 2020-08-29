@@ -11,6 +11,7 @@ export class StockComponent implements OnInit {
   constructor() {
     if (localStorage.getItem('stock') === null) {
       localStorage.setItem('stock', JSON.stringify({ stocks: [] }));
+      this.stocks = [];
     } else {
       this.stocks = JSON.parse(localStorage.getItem('stock')).stocks;
     }
@@ -22,10 +23,14 @@ export class StockComponent implements OnInit {
     for (let i = 0; i < items.length; i++) {
       if (this.stocks.map(x => x.name).indexOf(items[i].name) == -1) {
         this.stocks.push({ name: items[i].name, stock: 0 });
-        console.log(this.stocks);
       }
     }
-
+    for (let i = 0; i < this.stocks.length; i++) {
+      if (items.map(x => x.name).indexOf(this.stocks[i].name) == -1) {
+        this.stocks.splice(i, 1);
+        i--;
+      }
+    }
     localStorage.setItem('stock', JSON.stringify({ stocks: this.stocks }));
   }
 
